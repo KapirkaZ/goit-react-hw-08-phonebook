@@ -19,17 +19,17 @@ import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 
 const HomePage = lazy(() =>
-  import("./pageViews/HomePage" /* webpackChunkName: "home-page" */)
+  import("./pageViews/HomePage" /* webpackChunkName: "homePage" */)
 );
 
 const RegisterPage = lazy(() =>
-  import("./pageViews/RegisterPage" /* webpackChunkName: "register-page" */)
+  import("./pageViews/RegisterPage" /* webpackChunkName: "registerPage" */)
 );
 const LoginPage = lazy(() =>
-  import("./pageViews/LoginPage" /* webpackChunkName: "login-page" */)
+  import("./pageViews/LoginPage" /* webpackChunkName: "loginPage" */)
 );
 const ContactsPage = lazy(() =>
-  import("./pageViews/ContactsPage" /* webpackChunkName: "contacts-page" */)
+  import("./pageViews/ContactsPage" /* webpackChunkName: "contactsPage" */)
 );
 
 const App = ({ onGetCurrentUser }) => {
