@@ -4,44 +4,37 @@ import ContactForm from "../components/ContactForm/ContactForm";
 import Filter from "../components/Filter/Filter";
 import ContactList from "../components/ContactList/ContactList";
 import contactsOperations from "../redux/contacts/contactsOperations";
-import { CSSTransition } from "react-transition-group";
-import s from "../components/AppBar/AppBar.module.css";
+// import { CSSTransition } from "react-transition-group";
+// import s from "../components/AppBar/AppBar.module.css";
 
-class ContactsViews extends Component {
-  componentDidMount() {
-    this.props.onFetchContacts();
-  }
+const App = ({ isLoading, isError, fetchContacts }) => {
+  // eslint-disable-next-line
+  useEffect(() => fetchContacts(), []);
 
-  render() {
-    return (
-      <div className={s.box}>
-        <div className={s.wrapper}>
-          <ContactForm />
-
-          <CSSTransition
-            in={true}
-            timeout={250}
-            classNames={s.filter}
-            unmountOnExit
-          >
-            <Filter />
-          </CSSTransition>
-        </div>
-
-        <div>
-          <ContactList />
-        </div>
-      </div>
-    );
-  }
-}
-
-// const mapStateToProps = state => ({
-//   isLoadingTasks: contactsSelectors.getLoading(state),
-// });
-
-const mapDispatchToProps = {
-  onFetchContacts: contactsOperations.fetchContacts,
+  return (
+    <Container>
+      <h1>Phonebook</h1>
+      <ContactForm />
+      <h2>Contacts</h2>
+      <Filter />
+      {isLoading ? (
+        <Spinner />
+      ) : isError ? (
+        <p>Oops, you broke our page! :(</p>
+      ) : (
+        <ContactList />
+      )}
+    </Container>
+  );
 };
 
-export default connect(null, mapDispatchToProps)(ContactsViews);
+const mapStateToProps = (state) => ({
+  isLoading: contactsSelectors.getLoading(state),
+  isError: contactsSelectors.getError(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
