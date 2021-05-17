@@ -9,27 +9,27 @@ import Container from "./components/Container/Container";
 import { Switch, Route, Redirect } from "react-router-dom";
 import routes from "./routes";
 import AppBar from "./components/AppBar/AppBar";
-import Loader from "./components/Loader";
+import Loader from "./components/Loader/Loader";
 import { useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 
-import { authOperations } from "./redux/auth";
+import authOperations from "./redux/auth/authOperations";
 
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 
 const HomePage = lazy(() =>
-  import("./views/HomePage" /* webpackChunkName: "home-page" */)
+  import("./pageViews/HomePage" /* webpackChunkName: "home-page" */)
 );
 
 const RegisterPage = lazy(() =>
-  import("./views/RegisterPage" /* webpackChunkName: "register-page" */)
+  import("./pageViews/RegisterPage" /* webpackChunkName: "register-page" */)
 );
 const LoginPage = lazy(() =>
-  import("./views/LoginPage" /* webpackChunkName: "login-page" */)
+  import("./pageViews/LoginPage" /* webpackChunkName: "login-page" */)
 );
 const ContactsPage = lazy(() =>
-  import("./views/ContactsPage" /* webpackChunkName: "contacts-page" */)
+  import("./pageViews/ContactsPage" /* webpackChunkName: "contacts-page" */)
 );
 
 const App = ({ onGetCurrentUser }) => {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { authOperations } from "../redux/auth";
+import authOperations from "../redux/auth/authOperations";
 
 const initialState = {
   name: "",

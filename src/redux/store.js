@@ -12,8 +12,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import logger from "redux-logger";
-import contacts from "./contacts/";
-import { auth } from "./redux/auth";
+import { contacts } from "./contacts";
+import { auth } from "../redux/auth";
 
 const middleware = [
   ...getDefaultMiddleware({

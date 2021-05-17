@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
-import Navigation from "../Navigation";
-import AuthNav from "../AuthNav";
+import Navigation from "../Navigation/Navigation";
+import AuthNav from "../AuthNav/AuthNav";
 import UserMenu from "../UserMenu/UserMenu";
 import styles from "./AppBar.module.css";
-import { authSelectors } from "../../redux/auth";
+import authSelectors from "../../redux/auth/authSelectors";
 
 const { getIsAuthenticated } = authSelectors;
 
