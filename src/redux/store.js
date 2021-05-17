@@ -35,7 +35,7 @@ const authPersistConfig = {
 //   blacklist: ["filter"],
 // };
 
-const store = configureStore({
+const { store } = configureStore({
   reducer: { auth: persistReducer(authPersistConfig, auth), contacts },
 
   middleware,
