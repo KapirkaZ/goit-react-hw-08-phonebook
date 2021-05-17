@@ -1,0 +1,1 @@
+{"version":3,"sources":["pageViews/HomePage.js"],"names":["HomePage","className"],"mappings":"kKAIeA,UAJE,WACf,OAAO,oBAAIC,UAAU,iBAAd","file":"static/js/home-page.c2561624.chunk.js","sourcesContent":["const HomePage = () => {\r\n  return <h1 className=\"homapage-title\">Welcome to the phone book page!</h1>;\r\n};\r\n\r\nexport default HomePage;\r\n"],"sourceRoot":""}
