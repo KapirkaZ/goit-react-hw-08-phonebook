@@ -1,5 +1,4 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-// import contactsReducer from "./contacts/contactsReducers";
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -9,11 +8,10 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import logger from "redux-logger";
-import { contacts } from "./contacts";
-import { auth } from "../redux/auth";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { contacts } from './contacts';
+import { auth } from './auth';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -21,27 +19,21 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  logger,
 ];
 
 const authPersistConfig = {
-  key: "auth",
+  key: 'auth',
   storage,
-  whitelist: ["token"],
+  whitelist: ['token'],
 };
-// const contactsPersistConfig = {
-//   key: "root",
-//   storage,
-//   blacklist: ["filter"],
-// };
 
-const { store } = configureStore({
+const store = configureStore({
   reducer: { auth: persistReducer(authPersistConfig, auth), contacts },
-
   middleware,
-  devTools: process.env.NODE_ENV === "development",
+  devTools: process.env.NODE_ENV === 'development',
 });
 
 const persistor = persistStore(store);
 
+// eslint-disable-next-line
 export default { store, persistor };

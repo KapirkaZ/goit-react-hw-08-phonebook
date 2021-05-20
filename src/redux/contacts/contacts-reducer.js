@@ -1,8 +1,6 @@
-import { combineReducers } from "redux";
-import { createReducer } from "@reduxjs/toolkit";
-import actions from "./contactsActions";
-
-// import errorMessage from "../../components/Notification/Notification";
+import { combineReducers } from 'redux';
+import { createReducer } from '@reduxjs/toolkit';
+import actions from './contacts-actions';
 
 const {
   fetchContactRequest,
@@ -17,24 +15,6 @@ const {
   changeFilter,
 } = actions;
 
-// const addContacts = (state, action) => {
-//   const names = state.map((item) => item.name.toLowerCase());
-//   const isNotUniqueContact = names.includes(
-//     action.payload.contact.name.toLowerCase().trim()
-//   );
-
-//   if (isNotUniqueContact) {
-//     errorMessage(action.payload.contact.name);
-//     return state;
-//   } else {
-//     return [...state, action.payload.contact];
-//   }
-// };
-
-// const removeContacts = (state, action) => {
-//   return state.filter(({ id }) => id !== action.payload);
-// };
-
 const items = createReducer([], {
   [fetchContactSuccess]: (_, { payload }) => payload,
   [addContactSuccess]: (state, { payload }) => [...state, payload],
@@ -42,8 +22,8 @@ const items = createReducer([], {
     state.filter(({ id }) => id !== payload),
 });
 
-const filter = createReducer("", {
-  [changeFilter]: (_, action) => action.payload,
+const filter = createReducer('', {
+  [changeFilter]: (_, { payload }) => payload,
 });
 
 const loading = createReducer(false, {
@@ -69,9 +49,5 @@ const error = createReducer(false, {
   [fetchContactSuccess]: () => false,
   [fetchContactError]: () => true,
 });
-export default combineReducers({
-  items,
-  filter,
-  loading,
-  error,
-});
+
+export default combineReducers({ items, filter, loading, error });

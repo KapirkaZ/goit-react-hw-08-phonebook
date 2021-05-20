@@ -1,9 +1,9 @@
-import { connect } from "react-redux";
-import Navigation from "../Navigation/Navigation";
-import AuthNav from "../AuthNav/AuthNav";
-import UserMenu from "../UserMenu/UserMenu";
-import styles from "./AppBar.module.css";
-import authSelectors from "../../redux/auth/authSelectors";
+import { connect } from 'react-redux';
+import Navigation from '../Navigation';
+import AuthNav from '../AuthNav';
+import UserMenu from '../UserMenu/UserMenu';
+import styles from './AppBar.module.css';
+import { authSelectors } from '../../redux/auth';
 
 const { getIsAuthenticated } = authSelectors;
 
@@ -16,7 +16,7 @@ const AppBar = ({ isAuthenticated }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),
 });
 

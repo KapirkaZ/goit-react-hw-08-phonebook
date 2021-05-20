@@ -1,35 +1,26 @@
-// import React, { Component } from "react";
-// import { v4 as uuidv4 } from "uuid";
-// import ContactList from "./components/ContactList/ContactList";
-// import Filter from "./components/Filter/Filter";
-// import ContactForm from "./components/ContactForm/ContactForm";
-import Container from "./components/Container/Container";
-// import contactsOperations from "./redux/contacts/contactsOperations";
-// import contactsSelectors from "./redux/contacts/contactsSelectors";
-import { Switch, Route, Redirect } from "react-router-dom";
-import routes from "./routes";
-import AppBar from "./components/AppBar/AppBar";
-import Loader from "./components/Loader/Loader";
-import { useEffect, Suspense, lazy } from "react";
-import { connect } from "react-redux";
-
-import authOperations from "./redux/auth/authOperations";
-
-import PrivateRoute from "./components/PrivateRoute";
-import PublicRoute from "./components/PublicRoute";
+import { useEffect, Suspense, lazy } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import routes from './routes';
+import Container from './components/Container';
+import AppBar from './components/AppBar';
+import Loader from './components/Loader';
+import { authOperations } from './redux/auth';
+import { connect } from 'react-redux';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 
 const HomePage = lazy(() =>
-  import("./pageViews/HomePage" /* webpackChunkName: "homePage" */)
+  import('./views/HomePage' /* webpackChunkName: "home-page" */),
 );
 
 const RegisterPage = lazy(() =>
-  import("./pageViews/RegisterPage" /* webpackChunkName: "registerPage" */)
+  import('./views/RegisterPage' /* webpackChunkName: "register-page" */),
 );
 const LoginPage = lazy(() =>
-  import("./pageViews/LoginPage" /* webpackChunkName: "loginPage" */)
+  import('./views/LoginPage' /* webpackChunkName: "login-page" */),
 );
 const ContactsPage = lazy(() =>
-  import("./pageViews/ContactsPage" /* webpackChunkName: "contactsPage" */)
+  import('./views/ContactsPage' /* webpackChunkName: "contacts-page" */),
 );
 
 const App = ({ onGetCurrentUser }) => {

@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import ContactForm from "../components/ContactForm/ContactForm";
-import Filter from "../components/Filter/Filter";
-import ContactList from "../components/ContactList/ContactList";
-import contactsOperations from "../redux/contacts/contactsOperations";
-// import { CSSTransition } from "react-transition-group";
-// import s from "../components/AppBar/AppBar.module.css";
+import Container from '../components/Container';
+import ContactForm from '../components/ContactForm';
+import ContactList from '../components/ContactList';
+import Filter from '../components/Filter';
+import Spinner from '../components/Loader';
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import { contactsOperations, contactsSelectors } from '../redux/contacts';
 
 const App = ({ isLoading, isError, fetchContacts }) => {
   // eslint-disable-next-line
@@ -20,7 +20,7 @@ const App = ({ isLoading, isError, fetchContacts }) => {
       {isLoading ? (
         <Spinner />
       ) : isError ? (
-        <p>Oops, you broke our page! :(</p>
+        <p>Oops, we have some loading error! :(</p>
       ) : (
         <ContactList />
       )}
@@ -28,12 +28,12 @@ const App = ({ isLoading, isError, fetchContacts }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isLoading: contactsSelectors.getLoading(state),
   isError: contactsSelectors.getError(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
 });
 

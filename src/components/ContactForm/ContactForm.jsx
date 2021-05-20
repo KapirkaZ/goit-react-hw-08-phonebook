@@ -1,71 +1,68 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import styles from "./ContactForm.module.css";
-import { connect } from "react-redux";
-import contactsOperations from "../../redux/contacts/contactsOperations";
+import { useState } from 'react';
+import { connect } from 'react-redux';
+import { contactsOperations } from '../../redux/contacts';
+import PropTypes from 'prop-types';
 
-class ContactForm extends Component {
-  state = {
-    name: "",
-    number: "",
+const initialState = {
+  name: '',
+  number: '',
+};
+
+const ContactForm = ({ onSubmit }) => {
+  const [inputValue, setInputValue] = useState(initialState);
+  const { name, number } = inputValue;
+
+  const changeInput = e => {
+    const { name, value } = e.currentTarget;
+    setInputValue({ ...inputValue, [name]: value });
   };
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    const { name, number } = this.state;
-    this.props.onAddContact(name, number);
-
-    this.setState({ name: "", number: "" });
+    onSubmit(name, number);
+    setInputValue(initialState);
   };
 
-  render() {
-    return (
-      <form className={styles.TaskEditor} onSubmit={this.handleSubmit}>
-        <label className={styles.TaskEditor_label}>
-          Name:
-          <input
-            className={styles.TaskEditor_input}
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label className={styles.TaskEditor_label}>
-          Number:
-          <input
-            className={styles.TaskEditor_input}
-            type="text"
-            name="number"
-            value={this.state.number}
-            onChange={this.handleChange}
-          />
-        </label>
-        <button className={styles.TaskEditor_button} type="submit">
-          Add contact
-        </button>
-      </form>
-    );
-  }
-}
+  return (
+    <form className="form" onSubmit={handleSubmit}>
+      <label>
+        Name
+        <input
+          type="text"
+          name="name"
+          value={name}
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+          required
+          placeholder="Enter your name"
+          onChange={changeInput}
+        />
+      </label>
+      <label>
+        Number
+        <input
+          type="tel"
+          name="number"
+          value={number}
+          pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
+          title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
+          required
+          placeholder="Enter your number"
+          onChange={changeInput}
+        />
+      </label>
+      <button type="submit">Add contact</button>
+    </form>
+  );
+};
 
 ContactForm.propTypes = {
-  onAddContact: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = {
-  onAddContact: contactsOperations.addContact,
-};
+const mapDispatchToProps = dispatch => ({
+  onSubmit: (name, number) =>
+    dispatch(contactsOperations.addContact(name, number)),
+});
 
 export default connect(null, mapDispatchToProps)(ContactForm);

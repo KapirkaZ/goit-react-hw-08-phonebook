@@ -1,8 +1,7 @@
-import { connect } from "react-redux";
-import authSelectors from "../../redux/auth/authSelectors";
-import authOperations from "../../redux/auth/authOperations";
-import defaultAvatar from "../../images/default-avatar.jpg";
-import styles from "./UserMenu.module.css";
+import { connect } from 'react-redux';
+import { authSelectors, authOperations } from '../../redux/auth';
+import defaultAvatar from '../../images/default-avatar.png';
+import styles from './UserMenu.module.css';
 
 const { getUserEmail } = authSelectors;
 
@@ -17,7 +16,7 @@ const UserMenu = ({ email, avatar, onLogout }) => {
     </div>
   );
 };
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   email: getUserEmail(state),
   avatar: defaultAvatar,
 });
