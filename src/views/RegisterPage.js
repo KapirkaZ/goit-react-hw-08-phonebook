@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { connect } from 'react-redux';
-import { authOperations } from '../redux/auth';
+import { useState } from "react";
+import { connect } from "react-redux";
+import { authOperations } from "../redux/auth";
 
 const initialState = {
-  name: '',
-  email: '',
-  password: '',
+  name: "",
+  email: "",
+  password: "",
 };
 
 const RegisterPage = ({ onRegister }) => {
@@ -16,17 +16,17 @@ const RegisterPage = ({ onRegister }) => {
     setState({ ...state, [name]: value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     onRegister(state);
     setState(initialState);
   };
   return (
     <div>
-      <h1>Please, register to create a new account!</h1>
+      <h1>Please register</h1>
       <form className="form" onSubmit={handleSubmit} autoComplete="off">
         <label>
-          Name
+          Name:
           <input
             type="name"
             name="name"
@@ -37,7 +37,7 @@ const RegisterPage = ({ onRegister }) => {
           />
         </label>
         <label>
-          Email
+          Email:
           <input
             type="email"
             name="email"
@@ -48,7 +48,7 @@ const RegisterPage = ({ onRegister }) => {
           />
         </label>
         <label>
-          Password
+          Password:
           <input
             type="password"
             name="password"

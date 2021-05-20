@@ -1,7 +1,7 @@
 body {
   margin: 0;
   background-color: #fff;
-  background-image: url('https://cdn.pixabay.com/photo/2015/05/05/09/42/paper-753508_960_720.jpg');
+  background-image: url("./images/bg-purple.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   color: #2a2a2a;
@@ -21,22 +21,23 @@ a {
 
 .Navlink {
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 15px;
   border: 2px solid transparent;
   color: black;
   transition: all 200ms ease-in-out;
+  border-color: purple;
 }
 
 .Navlink:hover {
-  border-color: orange;
+  border-color: purple;
 }
 
 .Navlink:not(:last-child) {
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
 .Navlink--active {
-  background-color: orange;
+  background-color: purple;
   color: #fff;
 }
 
@@ -44,34 +45,50 @@ a {
   display: flex;
   flex-direction: column;
   width: 300px;
+  border: 0;
+  margin: 0;
+
+  padding: 0;
+  position: relative;
+  min-width: 0;
+  flex-direction: column;
+  vertical-align: top;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form > label {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+
+  padding: 10px;
+  border-radius: 15px;
+  background-color: rgb(201, 193, 218);
+  border: solid 2px purple;
 }
 
 .form input {
-  width: 200px;
   background-color: transparent;
   outline: none;
   border: none;
-  border-bottom: 1px solid #000;
 }
 
 .form > button {
   padding: 5px;
   width: 120px;
-  background-color: rgb(179, 220, 253);
-  border: 2px solid rgb(144, 204, 253);
+  background-color: rgb(38, 207, 103);
+  border: 2px solid rgb(10, 94, 7);
   border-radius: 10px;
   transition: all 200ms ease-in-out;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form > button:hover {
   transform: scale(1.1);
-  background-color: rgb(144, 204, 253);
+  background-color: rgb(211, 153, 216);
+  border: solid 2px purple;
 }
 
 .homapage-title {

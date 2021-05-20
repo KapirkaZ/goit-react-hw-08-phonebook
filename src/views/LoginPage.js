@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { connect } from 'react-redux';
-import { authOperations } from '../redux/auth';
+import { useState } from "react";
+import { connect } from "react-redux";
+import { authOperations } from "../redux/auth";
 
 const initialState = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
 };
 
 const LoginPage = ({ onLogin }) => {
@@ -15,7 +15,7 @@ const LoginPage = ({ onLogin }) => {
     setState({ ...state, [name]: value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     onLogin(state);
     setState(initialState);
@@ -23,7 +23,7 @@ const LoginPage = ({ onLogin }) => {
 
   return (
     <div>
-      <h1>Please, log in if you already have an account!</h1>
+      <h1>Please login</h1>
       <form className="form" onSubmit={handleSubmit} autoComplete="off">
         <label>
           Email
